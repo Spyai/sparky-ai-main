@@ -7,17 +7,17 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       name: "Rajesh Kumar",
-      location: "Wheat Farmer, Punjab",
+      location: "Sugarcane Farmer, Karnataka",
       avatar: "R",
-      quote: "SparkyAI helped me identify a pest infestation before it spread. Their satellite analysis saved my entire wheat crop this season.",
+      quote: "SparkyAI helped me identify a pest infestation before it spread. Their satellite analysis saved my entire sugarcane crop this season.",
       rating: 5,
-      crop: "Wheat",
-      savings: "₹2,50,000",
+      crop: "Sugarcane",
+      savings: "₹30,000",
       color: "from-blue-500 to-blue-600"
     },
     {
       name: "Lakshmi Devi",
-      location: "Rice Farmer, Tamil Nadu", 
+      location: "Rice Farmer, Karnataka", 
       avatar: "L",
       quote: "The WhatsApp chatbot gives me daily updates about my farm's condition. I've reduced water usage by 30% with their irrigation recommendations.",
       rating: 5,
