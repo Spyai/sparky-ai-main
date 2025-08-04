@@ -10,12 +10,20 @@ import {
 } from "lucide-react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useCountAnimation } from "@/hooks/useCountAnimation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const HeroSection = () => {
-  const statsRef = useRef(null);
-  const dashboardRef = useRef(null);
-  const isStatsInView = useInView(statsRef, { once: true, amount: 0.5 });
+  const [mounted, setMounted] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  
+  // Only initialize motion hooks after component is mounted
+  const isStatsInView = useInView(statsRef, { 
+    once: true, 
+    amount: 0.5,
+    // Add fallback for server-side rendering
+    root: typeof window !== "undefined" ? undefined : null
+  });
 
   const { scrollYProgress } = useScroll({
     target: dashboardRef,
@@ -24,35 +32,50 @@ export const HeroSection = () => {
 
   const dashboardY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const farmersCount = useCountAnimation({
     end: 1500,
     duration: 2500,
-    startOnView: isStatsInView,
+    startOnView: mounted && isStatsInView,
   });
   const hectaresCount = useCountAnimation({
     end: 1000,
     duration: 2200,
-    startOnView: isStatsInView,
+    startOnView: mounted && isStatsInView,
   });
   const regionsCount = useCountAnimation({
     end: 2,
     duration: 1500,
-    startOnView: isStatsInView,
+    startOnView: mounted && isStatsInView,
   });
   const accuracyCount = useCountAnimation({
     end: 89.9,
     duration: 2000,
-    startOnView: isStatsInView,
+    startOnView: mounted && isStatsInView,
   });
 
   useEffect(() => {
-    if (isStatsInView) {
+    if (mounted && isStatsInView) {
       farmersCount.startAnimation();
       hectaresCount.startAnimation();
       regionsCount.startAnimation();
       accuracyCount.startAnimation();
     }
-  }, [isStatsInView]);
+  }, [mounted, isStatsInView, farmersCount, hectaresCount, regionsCount, accuracyCount]);
+
+  // Don't render until mounted to prevent hydration issues
+  if (!mounted) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-950/20 pt-24">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-pulse">Loading...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -163,7 +186,7 @@ export const HeroSection = () => {
                   style={{ animationDelay: "0.2s" }}
                 >
                   AI-Powered{" "}
-                  <span className="gradient-text bg-gradient-to-r from-green-500 via-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-shift hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-lg">
+                  <span className="gradient-text bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-gradient-shift hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-lg">
                     Satellite Intelligence
                   </span>{" "}
                   for Smart Farming
@@ -206,14 +229,19 @@ export const HeroSection = () => {
                 Watch Demo
               </Button>
             </div>
-            <div
+            <motion.div
+              ref={dashboardRef}
               className="rounded-lg relative max-w-7xl mx-auto animate-fade-in hover-scale mt-16"
-              style={{ animationDelay: "0.8s" }}
+              style={{ animationDelay: "0.8s", y: dashboardY }}
             >
               <div className="relative h-[420px] overflow-hidden rounded-2xl">
-                <img src="./dashboardUI.png" />
+                <img 
+                  src="./dashboardUI.png" 
+                  alt="Dashboard UI" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -223,7 +251,7 @@ export const HeroSection = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           <motion.div

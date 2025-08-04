@@ -9,11 +9,18 @@ interface UseCountAnimationProps {
 export const useCountAnimation = ({ end, duration = 2000, startOnView = true }: UseCountAnimationProps) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Ensure component is mounted before starting animations
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (!hasStarted && startOnView) return;
+    if (!isMounted || !hasStarted || !startOnView) return;
 
     let startTime: number;
+    let animationId: number;
     const startValue = 0;
     const endValue = end;
 
@@ -29,14 +36,24 @@ export const useCountAnimation = ({ end, duration = 2000, startOnView = true }: 
       setCount(currentCount);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [end, duration, hasStarted, startOnView]);
+    animationId = requestAnimationFrame(animate);
 
-  const startAnimation = () => setHasStarted(true);
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, [end, duration, hasStarted, startOnView, isMounted]);
+
+  const startAnimation = () => {
+    if (isMounted) {
+      setHasStarted(true);
+    }
+  };
 
   return { count, startAnimation };
 };
