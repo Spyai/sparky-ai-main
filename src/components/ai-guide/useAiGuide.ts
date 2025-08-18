@@ -3,7 +3,7 @@ import { Message, MESSAGES } from './types';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const useAiGuide = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentMessage, setCurrentMessage] = useState<Message | null>(null);
   const [isTyping, setIsTyping] = useState(false);
   const [typedText, setTypedText] = useState('');

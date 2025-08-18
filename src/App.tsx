@@ -11,6 +11,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { CursorTracker } from "./components/ui/CursorTracker";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,11 @@ const App = () => (
       <LanguageProvider>
       <Toaster />
       <Sonner />
+      <CursorTracker/>
+      <div className="fixed inset-0 pointer-events-none z-50">
+          <div className="cursor-dot w-2 h-2 bg-green-500 rounded-full fixed opacity-80 animate-pulse shadow-lg shadow-green-500/50"></div>
+          <div className="cursor-ring w-8 h-8 border-2 border-blue-400 rounded-full fixed opacity-40 animate-spin-slow"></div>
+        </div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

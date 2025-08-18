@@ -25,12 +25,12 @@ export const HeroSection = () => {
     root: typeof window !== "undefined" ? undefined : null
   });
 
-  const { scrollYProgress } = useScroll({
-    target: dashboardRef,
-    offset: ["start end", "end start"],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: dashboardRef,
+  //   offset: ["start end", "end start"],
+  // });
 
-  const dashboardY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  // const dashboardY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   useEffect(() => {
     setMounted(true);
@@ -81,10 +81,10 @@ export const HeroSection = () => {
     <>
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-950/20 pt-24 overflow-hidden cursor-none">
         {/* Enhanced Custom Cursor */}
-        <div className="fixed inset-0 pointer-events-none z-50">
+        {/* <div className="fixed inset-0 pointer-events-none z-50">
           <div className="cursor-dot w-2 h-2 bg-green-500 rounded-full fixed opacity-80 animate-pulse shadow-lg shadow-green-500/50"></div>
-          <div className="cursor-ring w-8 h-8 border-2 border-blue-400 rounded-full fixed opacity-40 animate-spin-slow"></div>
-        </div>
+          <div className="cursor-ring w-8 h-8 border-2 border-blue-400 rounded-full fixed opacity-40 animate-spin-slow">ok</div>
+        </div> */}
 
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0">
@@ -232,7 +232,7 @@ export const HeroSection = () => {
             <motion.div
               ref={dashboardRef}
               className="rounded-lg relative max-w-7xl mx-auto animate-fade-in hover-scale mt-16"
-              style={{ animationDelay: "0.8s", y: dashboardY }}
+              // style={{ animationDelay: "0.8s", y: dashboardY }}
             >
               <div className="relative h-[420px] overflow-hidden rounded-2xl">
                 <img 
