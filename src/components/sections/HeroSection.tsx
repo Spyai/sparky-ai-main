@@ -213,13 +213,15 @@ export const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-fade-in"
               style={{ animationDelay: "0.6s" }}
             >
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 hover:from-green-700 hover:via-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg group transition-all duration-300 hover:scale-110 shadow-xl hover:shadow-2xl rounded-full animate-glow cursor-pointer hover:rotate-1"
-              >
-                Start Free Farm Analysis
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform animate-bounce-gentle" />
-              </Button>
+              <a target="_blank" href="https://sparky-ai-dashboard-power.vercel.app/">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 hover:from-green-700 hover:via-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg group transition-all duration-300 hover:scale-110 shadow-xl hover:shadow-2xl rounded-full animate-glow cursor-pointer hover:rotate-1"
+                >
+                  Start Free Farm Analysis
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform animate-bounce-gentle" />
+                </Button>
+              </a>
               <Button
                 variant="outline"
                 size="lg"
