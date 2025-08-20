@@ -67,8 +67,8 @@ export const Navbar = () => {
             </Link>
             <LanguageSelector />
             <Button asChild>
-              <a href="https://wa.me/your-number" target="_blank" rel="noopener noreferrer">
-                Start Free Analysis
+              <a href="https://sparky-ai-dashboard-power.vercel.app/" target="_blank" rel="noopener noreferrer">
+                Start Free Analysis 
               </a>
             </Button>
           </div>
