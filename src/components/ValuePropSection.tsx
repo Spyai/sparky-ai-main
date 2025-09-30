@@ -6,13 +6,13 @@ const ValuePropsSection = () => {
   const valueProps = [
     {
       icon: '🌾',
-      title: '1200+ Active Farmers',
+      title: '4500+ Active Farmers',
       description: 'Supporting farmers across India with AI-powered insights',
       color: 'from-emerald-500 to-green-600'
     },
     {
       icon: '📊',
-      title: '1000+ Hectares Monitored',
+      title: '2000+ Hectares Monitored',
       description: 'Continuous satellite monitoring of agricultural land',
       color: 'from-blue-500 to-cyan-600'
     },

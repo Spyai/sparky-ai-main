@@ -37,17 +37,17 @@ export const HeroSection = () => {
   }, []);
 
   const farmersCount = useCountAnimation({
-    end: 1500,
+    end: 4500,
     duration: 2500,
     startOnView: mounted && isStatsInView,
   });
   const hectaresCount = useCountAnimation({
-    end: 1000,
+    end: 2000,
     duration: 2200,
     startOnView: mounted && isStatsInView,
   });
   const regionsCount = useCountAnimation({
-    end: 2,
+    end: 3,
     duration: 1500,
     startOnView: mounted && isStatsInView,
   });
