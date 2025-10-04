@@ -39,22 +39,22 @@ export const HeroSection = () => {
   const farmersCount = useCountAnimation({
     end: 4500,
     duration: 2500,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const hectaresCount = useCountAnimation({
     end: 2000,
     duration: 2200,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const regionsCount = useCountAnimation({
     end: 3,
     duration: 1500,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const accuracyCount = useCountAnimation({
     end: 89.9,
     duration: 2000,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
 
   useEffect(() => {
@@ -299,7 +299,7 @@ export const HeroSection = () => {
               whileInView={{ scale: 1 }}
               transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
             >
-              {regionsCount.count}
+              {regionsCount.count}+
             </motion.div>
             <div className="text-gray-600">States in India</div>
           </motion.div>
