@@ -11,6 +11,9 @@ import {
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useCountAnimation } from "@/hooks/useCountAnimation";
 import { useEffect, useRef, useState } from "react";
+import { a } from "node_modules/framer-motion/dist/types.d-Bq-Qm38R";
+
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL;
 
 export const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
@@ -39,22 +42,22 @@ export const HeroSection = () => {
   const farmersCount = useCountAnimation({
     end: 4500,
     duration: 2500,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const hectaresCount = useCountAnimation({
     end: 2000,
     duration: 2200,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const regionsCount = useCountAnimation({
     end: 3,
     duration: 1500,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
   const accuracyCount = useCountAnimation({
     end: 89.9,
     duration: 2000,
-    startOnView: mounted && isStatsInView,
+    startOnView: false,
   });
 
   useEffect(() => {
@@ -213,7 +216,7 @@ export const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-fade-in"
               style={{ animationDelay: "0.6s" }}
             >
-              <a target="_blank" href="https://sparky-ai-dashboard-new.vercel.app/">
+              <a target="_blank" href={dashboardUrl}>
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 hover:from-green-700 hover:via-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg group transition-all duration-300 hover:scale-110 shadow-xl hover:shadow-2xl rounded-full animate-glow cursor-pointer hover:rotate-1"
@@ -299,7 +302,7 @@ export const HeroSection = () => {
               whileInView={{ scale: 1 }}
               transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
             >
-              {regionsCount.count}
+              {regionsCount.count}+
             </motion.div>
             <div className="text-gray-600">States in India</div>
           </motion.div>

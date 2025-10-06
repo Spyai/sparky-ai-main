@@ -8,7 +8,7 @@ interface UseCountAnimationProps {
 
 export const useCountAnimation = ({ end, duration = 2000, startOnView = true }: UseCountAnimationProps) => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   // Ensure component is mounted before starting animations
@@ -16,8 +16,17 @@ export const useCountAnimation = ({ end, duration = 2000, startOnView = true }: 
     setIsMounted(true);
   }, []);
 
+  // Start animation immediately if startOnView is false
   useEffect(() => {
-    if (!isMounted || !hasStarted || !startOnView) return;
+    if (!isMounted || isAnimating) return;
+    
+    if (!startOnView) {
+      setIsAnimating(true);
+    }
+  }, [isMounted, startOnView, isAnimating]);
+
+  useEffect(() => {
+    if (!isMounted || !isAnimating) return;
 
     let startTime: number;
     let animationId: number;
@@ -47,11 +56,11 @@ export const useCountAnimation = ({ end, duration = 2000, startOnView = true }: 
         cancelAnimationFrame(animationId);
       }
     };
-  }, [end, duration, hasStarted, startOnView, isMounted]);
+  }, [end, duration, isAnimating, isMounted]);
 
   const startAnimation = () => {
-    if (isMounted) {
-      setHasStarted(true);
+    if (isMounted && !isAnimating) {
+      setIsAnimating(true);
     }
   };
 
