@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
 
+const dahsboardUrl = import.meta.env.VITE_DASHBOARD_URL;
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -67,7 +69,7 @@ export const Navbar = () => {
             </Link>
             <LanguageSelector />
             <Button asChild>
-              <a href="https://sparky-ai-dashboard-new.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <a href={dahsboardUrl} target="_blank" rel="noopener noreferrer">
                 Start Free Analysis 
               </a>
             </Button>
