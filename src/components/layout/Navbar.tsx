@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
 
 const dahsboardUrl = import.meta.env.VITE_DASHBOARD_URL;
+const dronagiriUrl = import.meta.env.VITE_DRONAGIRI_URL;
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,15 @@ export const Navbar = () => {
               }`}
             >
               Home
+            </Link>
+            <Link 
+              to={dronagiriUrl} 
+              target="_blank" 
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/dronagiri') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Operation Dronagiri
             </Link>
             <Link 
               to="/about" 
@@ -95,6 +105,9 @@ export const Navbar = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t border-border">
               <Link to="/" className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary">
                 Home
+              </Link>
+              <Link to={dronagiriUrl} target="_blank" className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary">
+                Operation Dronagiri
               </Link>
               <Link to="/about" className="block px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary">
                 About Us
