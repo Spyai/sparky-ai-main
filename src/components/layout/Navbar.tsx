@@ -36,7 +36,7 @@ export const Navbar = () => {
             >
               Home
             </Link>
-            <Link 
+            {/* <Link 
               to={dronagiriUrl} 
               target="_blank" 
               className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -44,7 +44,7 @@ export const Navbar = () => {
               }`}
             >
               Operation Dronagiri
-            </Link>
+            </Link> */}
             <Link 
               to="/about" 
               className={`text-sm font-medium transition-colors hover:text-primary ${
